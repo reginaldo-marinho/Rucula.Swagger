@@ -228,7 +228,8 @@
                 }
             };
 
-            var ui = SwaggerUIBundle({
+            let rucula
+            let ui = SwaggerUIBundle({
                 spec: swaggerConfig,
                 dom_id: '#swagger-ui',
                 presets: [
@@ -264,7 +265,7 @@
                                     bntRucula.textContent = "Rucula"
                                     btn.after(bntRucula)
                                     
-                                    let newId = Date.now().toString()
+                                    let newId = `__${Date.now().toString()}` 
                                     
                                     let container = target.querySelector('.parameters-container')
 
@@ -281,8 +282,7 @@
                                             floatLabel:true,
                                             environments:[{
                                                 description:"swagger",
-                                                env:"swagger",
-                                                URL:'/'
+                                                env:"swagger"
                                             }],
                                             localizations:[{}]
                                         }   
@@ -295,21 +295,31 @@
                                         if(method === "PUT") input.crud = 'u'
                                         if(method === "DELETE") input.crud = 'd'
 
-                                        let r = new Rucula({
+                                        rucula = new Rucula({
                                             global: config,
                                             window: input,
                                             id: newId
                                         })
                                         
-                                        r.event.on('rucula.load',() => {
-                                            r.elementRucula.querySelector('#r-a-reload').className = 'r-display-none'
-                                            r.elementRucula.querySelector('#alter-theme').className = 'r-display-none'
-                                            r.elementRucula.querySelector('.actions-view').className = 'r-display-none'
+                                        rucula.event.on('rucula.load',() => {
+                                            rucula.elementRucula.querySelector('#r-a-reload').className = 'r-display-none'
+                                            rucula.elementRucula.querySelector('#alter-theme').className = 'r-display-none'
+                                            rucula.elementRucula.querySelector('.actions-view').className = 'r-display-none'
+                                            
+                                            document.querySelector(`#${newId} .r-head.r-read-new.r-facede-action.top`).innerHTML = ""
+                                            
+                                            
                                         })
 
-                                        r.create();
+                                        rucula.create();
 
-                                        r.event.on('r-a-save',() => {
+                                        let event
+                                        if(method === "POST") event = 'r-a-save'
+                                        if(method === "PUT") input.crud = 'r-a-alter'
+                                        if(method === "DELETE") input.crud = 'r-a-delete'
+
+                                        rucula.event.on('r-a-save',() => {
+                                            target.querySelector('.btn.execute').click()
                                             code.value = JSON.stringify(rucula.object())
                                         })
                                     })
@@ -348,34 +358,19 @@
                                             body:"."
                                         },
                                         {
-                                            text: " 🔄 100 - 199",
-                                            type: "link",
-                                            link:"https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status#respostas_informativas"
-                                        },
-                                        {
-                                            text: " ✅ 200 - 299",
-                                            type: "link",
-                                            link:"https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status#respostas_bem-sucedidas"
-                                        },
-                                        {
-                                            text: " 🔀 300 - 399",
-                                            type: "link",
-                                            link:"https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status#mensagens_de_redirecionamento"
-                                        },
-                                        {
-                                            text: "❌ 400 - 499",
-                                            type: "link",
-                                            link:"https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status#respostas_de_erro_do_cliente"
-                                        },
-                                        {
-                                            text: " 💥 500 - 599",
-                                            type: "link",
-                                            link:"https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status#respostas_de_erro_do_servidor"
-                                        },
-                                        {
-                                            text: "Documentação",
+                                            text: "📚 Documentação",
                                             type: "link",
                                             link:"https://swagger.io/docs/open-source-tools/swagger-ui/customization/overview/"
+                                        },
+                                        {
+                                            text: "⭐GitHub",
+                                            type: "link",
+                                            link:"https://github.com/reginaldo-marinho/Rucula.Swagger"
+                                        },
+                                        {
+                                            text: "😁 ??",
+                                            type: "link",
+                                            link:"https://github.com/reginaldo-marinho"
                                         }
                                     ]
                         })
@@ -432,6 +427,22 @@
                     return input
                 }
                 }
+                ,
+                requestInterceptor: (request) => {
+                    rucula.loader.enable()
+                },
+                responseInterceptor: (repsonse) => {
+                    setTimeout(() => {
+                        rucula.loader.disable()
+                        rucula.popup.error({
+                            text:"Informações Registradas", 
+                            timeout:1500, 
+                            disableadFooter:true
+                        })
+                        
+                    },1000)
+                    
+                },
             })
         });
 
