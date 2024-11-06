@@ -1,0 +1,36 @@
+@import url("https://cdn.jsdelivr.net/gh/reginaldo-marinho/rucula-js@desenv/dist/style/style.css");
+
+.swagger-ui .r-q-l table {
+    width: auto;
+}
+
+.swagger-ui .r-q-l input,
+.swagger-ui .r-q-b input
+{
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    margin: auto;
+}
+
+.swagger-ui .r-q-l table thead {
+    background-color: #fff;
+}
+
+.swagger-ui .r-q-l td,
+.swagger-ui .r-q-l td[ruc-action]  {
+    margin: 0;
+    padding: 0;
+}
+
+.swagger-ui .r-q-l table tbody tr td:first-of-type {
+    min-width: unset;
+}
+
+.r-q-b .r-g-i-i.did-floating-label-content{
+    width: 100%;
+}
+.r-q-b .did-floating-input.r-input-width-default.r-i-control{
+    width: inherit;
+}
+
