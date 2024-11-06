@@ -23,20 +23,25 @@
   </a>
 </p>
 
+## O que Faz?
+
+Este projeto faz intermédio entre o usuário e a interface padrão do Swagger, o que garante que você use o padrão mesmo trabalhando com o RuculaUiSwagger
 ## Instalação
 
-- Adicione o pacote nuget  `dotnet add package RuculaX.Swagger`
-- Adicione o middleware  `app.UseRuculaUiSwagger()`
-
-Use o método de extensão `InjectRuculaUi` dentro de `UseSwaggerUI`, para linkar os arquivos estáticos `rucula.js` e `rucula.css`
+1. Adicione o pacote Nuget  [RuculaX.Swagger](https://www.nuget.org/packages/RuculaX.Swagger)
+1. Adicione o middleware  `app.UseRuculaUiSwagger()`
+1. Adicione à `UseSwaggerUI` a configuração  `InjectRuculaUi`
 
 ```c#
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(c=> {
-        c.InjectRuculaUi();
+        c.InjectRuculaUi(); 👈
     });
-    app.UseRuculaUiSwagger();
+    app.UseRuculaUiSwagger(); 👈
 }
 ```
+
+Pronto! A partir de agora toda vez que você iniciar seu projeto com o Swagger configurado, o [RuculaX.Swagger](https://www.nuget.org/packages/RuculaX.Swagger) procurará pelos métodos `POST` e `PUT` e configurará a interface para você.
+
