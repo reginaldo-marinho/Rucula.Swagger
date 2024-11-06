@@ -22,3 +22,21 @@
     <img src="https://img.shields.io/nuget/dt/Rucula.Swagger" alt="Discord conversation" />
   </a>
 </p>
+
+## Instalação
+
+- Adicione o pacote nuget  `dotnet add package RuculaX.Swagger`
+- Adicione o middleware  `app.UseRuculaUiSwagger()`
+
+Use o método de extensão `InjectRuculaUi` dentro de `UseSwaggerUI`, para linkar os arquivos estáticos `rucula.js` e `rucula.css`
+
+```c#
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(c=> {
+        c.InjectRuculaUi();
+    });
+    app.UseRuculaUiSwagger();
+}
+```
