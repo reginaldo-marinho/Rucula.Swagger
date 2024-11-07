@@ -4,17 +4,26 @@
     width: auto;
 }
 
+.swagger-ui label {
+    color: inherit;
+}
+
 .swagger-ui .r-q-l input,
 .swagger-ui .r-q-b input
 {
-    background: #fff;
+    background: inherit;
     border: 1px solid #d9d9d9;
     border-radius: 4px;
-    margin: auto;
+    margin: 1px;
+}
+
+.swagger-ui .r-q-l table td[ruc-action]{
+    margin: 1px;
 }
 
 .swagger-ui .r-q-l table thead {
-    background-color: #fff;
+    background-color: var(--bgc-frames);
+    color: var(--color-default);
 }
 
 .swagger-ui .r-q-l td,
@@ -34,3 +43,6 @@
     width: inherit;
 }
 
+.swagger-ui div.parameters-container {
+    height: unset;
+}

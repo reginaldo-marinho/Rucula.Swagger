@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
                            
             let target = mutation.target
             
-            if(target.className == "opblock-body" || target.className === "opblock opblock-post is-open"){
+            let className = target.className
+            if( className === "opblock-body" || className === "opblock opblock-post is-open" || className === "opblock opblock-put is-open"){
                     
                 let btnRucula = target.querySelector(".btn.try-out__btn.btn-rucula")
                     
@@ -19,7 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     return
                 }
 
-                let method = target.parentNode?.previousSibling?.querySelector('.opblock-summary-method').textContent
+                let method = className === "opblock-body" ? 
+                    target.parentNode?.previousSibling?.querySelector('.opblock-summary-method').textContent : 
+                    target.querySelector('.opblock-summary-method').textContent
                     
                 if(method === "GET" || method === "DELETE" || method === undefined){
                     return
@@ -37,7 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 let container = target.querySelector('.parameters-container')
 
                 container.id = newId
-                container.style.padding = "3px"
 
                 let rucula = null
 
@@ -46,7 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     let attr = bntRucula.getAttribute('disabled')
                     if(attr == null){
                         bntRucula.setAttribute('disabled', true)
-                    }else{
+                    }
+                    else{
                         bntRucula.removeAttribute('disabled')
                     }
                 })
@@ -127,9 +130,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     }))
 
                     rucula.event.on('rucula.load',() => {
+                        
                         rucula.elementRucula.querySelector(`#${rucula.P}r-a-reload`).className = 'r-display-none'
-                        rucula.elementRucula.querySelector(`#${rucula.P}alter-theme`).className = 'r-display-none'                                            
-                        document.querySelector(`#${newId} .r-head.r-read-new.r-facede-action.top`).innerHTML = ""
+                        let headerActions = document.querySelector(`#${newId} .r-head.r-read-new.r-facede-action.top`)
+                        let buttons = headerActions.querySelectorAll('button')
+
+                        for (let index = 0; index < buttons.length; index++) {
+                            
+                            if(index < 2) {
+                                continue
+                            }
+
+                            buttons[index]?.remove()
+                        }
+                        
+
                     })
 
                     rucula.create();
@@ -144,6 +159,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     rucula.event.on(event,() => {                          
                         target.querySelector('.btn.execute.opblock-control__btn').click()
+                    })
+
+                    let erase = rucula.elementRucula.querySelector(`#${rucula.P}erase-window`)
+
+                    erase.addEventListener('click',() => {
+
+                        let ruculaForm = rucula.elementFormRucula
+                        let inputs = ruculaForm.querySelectorAll("input,select,textarea")
+                        inputs.forEach((element,index)  => {
+
+                            element.value = ""
+                            element.focus()
+                            element.blur()
+
+                            if(index === inputs.length -1){
+                                ruculaForm.dispatchEvent(new Event('input',{bubbles: true}))
+                            }
+                        });
                     })
                 })
             }

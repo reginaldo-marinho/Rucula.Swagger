@@ -29,5 +29,11 @@ app.MapPost("/sale", (Sale sale) => {
     
 } );
 
+app.MapPut("/sale", (Sale sale) => { 
+
+    var Sale = sale;
+    
+} );
+
 app.Run();
 
