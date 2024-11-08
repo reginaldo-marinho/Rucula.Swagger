@@ -46,7 +46,7 @@ public class RuculaUiMiddeware
             
             var assembly = typeof(RuculaUiMiddeware).Assembly;
             
-            var fileStream = assembly.GetManifestResourceStream($"Rucula.Swagger.{ruculaStaticFile}");
+            var fileStream = assembly.GetManifestResourceStream($"RuculaX.Swagger.{ruculaStaticFile}");
 
             if(fileStream is null)
             {

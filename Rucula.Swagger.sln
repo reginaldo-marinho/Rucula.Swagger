@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sales", "Samples\Sales\Sale
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8EC97C92-7213-450C-ADD0-7487EA3DB769}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rucula.Swagger", "src\Rucula.Swagger\Rucula.Swagger.csproj", "{8C62B952-7C1E-4659-8EB5-F1A5BFE88237}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuculaX.Swagger", "src\Rucula.Swagger\RuculaX.Swagger.csproj", "{8C62B952-7C1E-4659-8EB5-F1A5BFE88237}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

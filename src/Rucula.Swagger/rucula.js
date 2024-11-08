@@ -1,4 +1,4 @@
-import {Rucula} from 'https://cdn.jsdelivr.net/gh/reginaldo-marinho/rucula-js@desenv/dist/Rucula.js'
+import {Rucula} from 'https://cdn.jsdelivr.net/gh/reginaldo-marinho/rucula-js@v0.1.0/dist/Rucula.js'
 
 document.addEventListener('DOMContentLoaded', () => {
     let swaggerUi = document.getElementById("swagger-ui")
