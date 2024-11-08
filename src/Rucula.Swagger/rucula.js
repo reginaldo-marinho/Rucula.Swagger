@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     rucula.event.on('rucula.load',() => {
                         
-                        rucula.elementRucula.querySelector(`#${rucula.P}r-a-reload`).className = 'r-display-none'
+                        rucula.elementRucula.querySelector('#'+rucula.p('r-a-reload')).className = 'r-display-none'
                         let headerActions = document.querySelector(`#${newId} .r-head.r-read-new.r-facede-action.top`)
                         let buttons = headerActions.querySelectorAll('button')
 
@@ -151,9 +151,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     let event
 
-                    if(method === "POST") event = `${rucula.P}r-a-save`
-                    if(method === "PUT") event = `${rucula.P}r-a-alter`
-                    if(method === "DELETE") event = `${rucula.P}r-a-delete`
+                    if(method === "POST") event = rucula.p('r-a-save')
+                    if(method === "PUT") event = rucula.p('r-a-alter')
+                    if(method === "DELETE") event = rucula.p('r-a-delete')
 
                     bntRucula.setAttribute('disabled',true) 
                     
@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         target.querySelector('.btn.execute.opblock-control__btn').click()
                     })
 
-                    let erase = rucula.elementRucula.querySelector(`#${rucula.P}erase-window`)
+                    let erase = rucula.elementRucula.querySelector('#'+rucula.p('erase-window'))
 
                     erase.addEventListener('click',() => {
 
