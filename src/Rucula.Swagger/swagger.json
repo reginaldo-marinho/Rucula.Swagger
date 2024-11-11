@@ -1,0 +1,111 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "Sales",
+      "version": "1.0"
+    },
+    "paths": {
+      "/sale": {
+        "post": {
+          "tags": [
+            "Sales"
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Sale"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      },
+      "/sale/{id}": {
+        "put": {
+          "tags": [
+            "Sales"
+          ],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "style": "simple",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Sale"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Sale": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": {
+              "type": "string",
+              "nullable": true
+            },
+            "saleItems": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SaleItem"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "SaleItem": {
+          "type": "object",
+          "properties": {
+            "saleHeaderId": {
+              "type": "string",
+              "nullable": true
+            },
+            "lineI": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": {
+              "type": "string",
+              "nullable": true
+            },
+            "price": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    }
+  }

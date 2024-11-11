@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentação API - Swagger UI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css" />
+  <link rel="stylesheet" href="rucula.css"/>
+  
+</head>
+<body>
+    <div id="swagger-ui"></div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.js"></script>
+    <script type="module" src="rucula.js"></script>
+    <script>
+        
+    window.onload = () => {
+        const ui = SwaggerUIBundle({
+            url: "./swagger.json", // Substitua pela URL do seu arquivo OpenAPI
+            dom_id: '#swagger-ui',
+            deepLinking: true,
+            presets: [
+            SwaggerUIBundle.presets.apis,
+            SwaggerUIStandalonePreset
+            ],
+            layout: "StandaloneLayout"
+        });
+        };
+  </script>
+</body>
+</html>

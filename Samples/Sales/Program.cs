@@ -29,7 +29,7 @@ app.MapPost("/sale", (Sale sale) => {
     
 } );
 
-app.MapPut("/sale", (Sale sale) => { 
+app.MapPut("/sale/{id}", (string id, Sale sale) => { 
 
     var Sale = sale;
     

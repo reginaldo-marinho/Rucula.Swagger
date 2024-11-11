@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>Ruculax.SwaggerUI</PackageId>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <Authors>Reginaldo Marinho</Authors>
     <Product>Swagger UI</Product>
   </PropertyGroup>
@@ -13,10 +13,12 @@
   <ItemGroup>
       <EmbeddedResource Include="rucula.js" />
       <EmbeddedResource Include="rucula.css" />
+      <EmbeddedResource Exclude="index.html" />
+      <EmbeddedResource Exclude="swagger.json" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.10" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.9.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="(6.2.3,6.*)" />
   </ItemGroup>
 </Project>

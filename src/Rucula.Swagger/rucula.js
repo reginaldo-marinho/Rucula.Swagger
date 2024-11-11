@@ -37,9 +37,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 let newId = `__${Date.now().toString()}` 
                 
-                let container = target.querySelector('.parameters-container')
+                let container = target.querySelector('.parameters-container .table-container')
 
-                container.id = newId
+                if(container == null){
+                    container = target.querySelector('.parameters-container')
+                }
+
+                let div = document.createElement('div')
+                div.id = newId
+
+                container.appendChild(div)
 
                 let rucula = null
 
@@ -65,10 +72,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         return
                     } 
 
-                    btn.click()
-
                     let exampleBody = target.querySelector(".body-param__example")
                     let objectFrame = JSON.parse(exampleBody.textContent)
+
+                    btn.click()
 
                     let config = {
                         floatLabel:true,
@@ -143,8 +150,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             buttons[index]?.remove()
                         }
-                        
 
+                        let rw = rucula.elementRucula.querySelector(`.${rucula.p('r-w')}`)
+                        rw.removeAttribute('style')
+                        rw.style.maxHeight  = '900px'
                     })
 
                     rucula.create();
