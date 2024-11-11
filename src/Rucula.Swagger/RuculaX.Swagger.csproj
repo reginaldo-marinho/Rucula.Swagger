@@ -13,12 +13,12 @@
   <ItemGroup>
       <EmbeddedResource Include="rucula.js" />
       <EmbeddedResource Include="rucula.css" />
-      <EmbeddedResource Exclude="index.html" />
-      <EmbeddedResource Exclude="swagger.json" />
+      <EmbeddedResource Remove="Index.html" />
+      <EmbeddedResource Remove="swagger.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.10" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="(6.2.3,6.*)" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="[7.0.0,9)" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="[6.3.0,6.9.0]" />
   </ItemGroup>
 </Project>
