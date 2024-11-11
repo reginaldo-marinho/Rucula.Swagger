@@ -29,8 +29,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 
                 let btn = target.querySelector(".btn.try-out__btn")
-                                                                                    
+                
+                if(btn == null){
+                    return
+                }
+                
                 let bntRucula = btn.cloneNode(true)
+
                 bntRucula.classList.add('btn-rucula')
                 bntRucula.textContent = "Rucula"
                 btn.after(bntRucula)
